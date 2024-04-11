@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ChildComponent from './ChildComponent';
+
 const ParentComponent = () => {
-    const name = "Krutisha";
-    const age = 22;
-  
-    return (
-      <div>
-        <h2>Parent Component</h2>
-        <ChildComponent name={name} age={age} />
-      </div>
-    );
+  const [dynamicProp, setDynamicProp] = useState('');
+
+  const handleInputChange = (event) => {
+    setDynamicProp(event.target.value);
   };
-  
-  export default ParentComponent;
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={dynamicProp}
+        onChange={handleInputChange}
+      />
+      <ChildComponent dynamicProp={dynamicProp} />
+    </div>
+  );
+};
+
+export default ParentComponent;
